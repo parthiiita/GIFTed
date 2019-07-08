@@ -3,7 +3,8 @@ import "./App.css";
 
 class App extends Component{
   state={
-    gifs: {data: []}
+    gifs: {data: []},
+    pausedGifs: {}
   }
 
 
@@ -17,12 +18,18 @@ class App extends Component{
     console.log(e.target.value);
     this.fetchGif(e.target.value);
   };
+  pausePlay = (gif) => {
+    const pausedGifs = Object.assign({}, this.state.pausedGifs);
+    if (pausedGifs[gif.id] === undefined) pausedGifs[gif.id] = false;
+    pausedGifs[gif.id] = !pausedGifs[gif.id];
+    this.setState({pausedGifs});
+  }
   render(){
     return(
       <div className="App">
-        <h1> Hello, World! </h1>
+        <h1> GIFTed! </h1>
         <input type="text" onChange={this.onChangee}/>
-        <div style={{display: 'flex'}}>{this.state.gifs.data.map(g => <img src={g.images.original.url} />)}</div>
+        <div style={{}}>{this.state.gifs.data.map(g => <img onClick={() => this.pausePlay(g)} style={{width:200, height: 200, margin:10, cursor: 'pointer'}} src={this.state.pausedGifs[g.id] ? g.images.original_still.url : g.images.original.url} />)}</div>
       </div>
     );
   }

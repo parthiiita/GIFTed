@@ -30,4 +30,4 @@ const proxyServer = httpProxy.createProxyServer({
 //   var newurl = 'http://google.com/';
 //   request(newurl).pipe(res);
 // });
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Node backend running on port ${port}!`))

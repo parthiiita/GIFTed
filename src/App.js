@@ -10,7 +10,7 @@ class App extends Component{
 
 
   fetchGif = (q) => {
-    fetch(`api/v1/gifs/search?api_key=c9fn3g2RczsgtPOnbNrxfRsaTvblCJ91&q=${q}&limit=25&offset=0&rating=G&lang=en`)
+    fetch(`api/v1/gifs/search?api_key=c9fn3g2RczsgtPOnbNrxfRsaTvblCJ91&q=${q}&limit=10&offset=0&rating=G&lang=en`)
     .then(re => Promise.resolve(re.json())).then((res) => this.setState({gifs: res}, () => console.log(this.state.gifs)));
   }
 

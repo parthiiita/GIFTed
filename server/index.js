@@ -1,13 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 3000
 const httpProxy = require('http-proxy');
 const proxyServer = httpProxy.createProxyServer({
     target: `https://api.giphy.com`,
     changeOrigin: true,
   });
-
-  const router = express.Router();
+  //app.use(express.static(__dirname + 'dist'));  const router = express.Router();
   function logProxyError(error) {
     logger.error('Error occured in giphy', { error });
   }
@@ -19,6 +18,13 @@ const proxyServer = httpProxy.createProxyServer({
     
     proxyServer.web(req, res, logProxyError.bind(null));
   });
+
+  app.use(express.static("./"))
+  app.use("*", (req, res) => {
+  console.log(__dirname);
+  res.sendFile('index.html', { root: './public' });
+});
+  
 // app.get('/hello', (req, res) => {
 //     console.log('hit');
 //     var newurl = 'http://google.com/';

@@ -25,15 +25,4 @@ const proxyServer = httpProxy.createProxyServer({
   res.sendFile('index.html', { root: './public' });
 });
   
-// app.get('/hello', (req, res) => {
-//     console.log('hit');
-//     var newurl = 'http://google.com/';
-//     request(newurl).pipe(res);
-//     //return res.send('Hello World!')
-// });
-// app.get('/', function(req,res) {
-//   //modify the url in any way you want
-//   var newurl = 'http://google.com/';
-//   request(newurl).pipe(res);
-// });
 app.listen(port, () => console.log(`Node backend running on port ${port}!`))

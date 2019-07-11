@@ -27,7 +27,7 @@ class App extends Component{
   render(){
     return(
       <div className="App">
-        <h1> GIFTed </h1>
+        <h1> GIFTed !</h1>
         <input type="text" onChange={this.onChangee}/>
         <div style={{}}>{this.state.gifs.data.map(g => <img onClick={() => this.pausePlay(g)} style={{width:200, height: 200, margin:10, cursor: 'pointer'}} src={this.state.pausedGifs[g.id] ? g.images.original_still.url : g.images.original.url} />)}</div>
       </div>

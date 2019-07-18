@@ -26,18 +26,20 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
+    historyApiFallback: true,
+    
     contentBase: path.join(__dirname, "public/"),
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
     compress: 
     true,
     hotOnly: true,
-    proxy: {
-        '/api': {
-            target: 'http://localhost:3001',
-            secure: false
-        }
-    }
+    // proxy: {
+    //     '/api': {
+    //         target: 'http://localhost:3001',
+    //         secure: false
+    //     }
+    // }
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };

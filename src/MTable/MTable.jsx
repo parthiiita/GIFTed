@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MTable.css';
 import ReactDOM from 'react-dom';
 import $ from 'jQuery';
-const totalItems = 1000000;
+const totalItems = 100;
 const itemHeight = 100;
 const itemsRendered = 10;
 var scrollContainer = document.getElementById('scroll-container');
@@ -44,7 +44,7 @@ class MTable extends React.Component {
     let start = itemsBefore + 1;
     for (var i = 0 ; i < 10 ; i++) {
         console.log( i);
-        ReactDOM.render( start + i, items[i]);
+        ReactDOM.render( this.props.rowJSX(start + i), items[i]);
         //items.eq(0).append(<div>{i+1}</div>)
     }
     //     if (firstItem > lastFirstItem) {
@@ -60,12 +60,15 @@ class MTable extends React.Component {
       const paddingTop = itemsBefore * itemHeight;
       const paddingBottom = itemsAfter * itemHeight;
       console.log({paddingTop, paddingBottom});
-      this.setState({paddingTop, paddingBottom});
+      this.setState({paddingTop, paddingBottom}, () => !this.state.paddingBottom && this.props.fetchData());
       //itemContainer.css({ paddingTop, paddingBottom });
       //this.forceUpdate()
 ;    }
     render() {
-        return (<div onScroll={this.setScrollState} id="scroll-container" className="MContainer">
+        return (<div>
+            <div><h1> GIFTed !</h1>
+        <input type="text" onChange={this.props.onChangee}/></div>
+            <div onScroll={this.setScrollState} id="scroll-container" className="MContainer">
         <div id="item-container" className="Table" style={{paddingTop: this.state.paddingTop, paddingBottom: this.state.paddingBottom}}>
             <div className="MRow">1</div>
             <div className="MRow">2</div>
@@ -77,6 +80,7 @@ class MTable extends React.Component {
             <div className="MRow">8</div>
             <div className="MRow">9</div>
             <div className="MRow">10</div>
+        </div>
         </div>
         </div>);
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MTable.css';
 import ReactDOM from 'react-dom';
 import $ from 'jQuery';
-const totalItems = 100;
+//const totalItems = 100;
 const itemHeight = 100;
 const itemsRendered = 10;
 var scrollContainer = document.getElementById('scroll-container');
@@ -30,6 +30,8 @@ class MTable extends React.Component {
     }
 
      setScrollState = (scrollTop) => {
+         const totalItems = this.props.totalItems;
+         console.log({totalItems});
          console.log(scrollTop.target.scrollTop, scrollContainer.scrollTop)
         //const itemContainer = document.getElementById('item-container');
         

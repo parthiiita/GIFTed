@@ -1,12 +1,10 @@
 
 const path = require("path");
 const webpack = require("webpack");
-require("babel-core/register");
-require("babel-polyfill");
-//require("babel");
+
 
 module.exports = {
-  entry: ['babel-polyfill',"./src/index.js"],
+  entry: "./src/index.js",
   mode: "development",
   module: {
     rules: [

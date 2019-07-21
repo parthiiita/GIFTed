@@ -7,7 +7,9 @@ class App extends Component {
   state = {
     gifs: [],
     pausedGifs: {},
-    fetchStatus: 'init'
+    fetchStatus: 'init',
+    search: undefined,
+    page: 0
   }
 
   componentDidMount() {
@@ -15,11 +17,11 @@ class App extends Component {
   }
 
 
-  fetchGif = (q) => {
+  fetchGif = () => {
     if (this.state.fetchStatus !== 'loading') {
       this.setState({ fetchStatus: 'loading' });
-      return fetch(`api/v1/gifs/search?api_key=c9fn3g2RczsgtPOnbNrxfRsaTvblCJ91&q=${q}&limit=10&offset=0&rating=G&lang=en`)
-        .then(re => Promise.resolve(re.json())).then((res) => this.setState({ fetchStatus: 'success', gifs: [...this.state.gifs, ...res.data] }, () => console.log(this.state.gifs)));
+      return fetch(`api/v1/gifs/search?api_key=c9fn3g2RczsgtPOnbNrxfRsaTvblCJ91&q=${this.state.search}&limit=100&offset=${this.state.page}&rating=G&lang=en`)
+        .then(re => Promise.resolve(re.json())).then((res) => this.setState({ page: this.state.page  +1, fetchStatus: 'success', gifs: [...this.state.gifs, ...res.data] }, () => console.log(this.state.gifs)));
     } else {
       return Promise.resolve();
     }
@@ -27,7 +29,8 @@ class App extends Component {
 
   onChangee = (e) => {
     console.log(e.target.value);
-    this.fetchGif(e.target.value);
+    var val = e.target.value;
+    this.setState({gifs: [], search: e.target.value, page:0}, () => this.fetchGif());
   };
 
 
@@ -58,6 +61,8 @@ class App extends Component {
           <Route exact path="/" render={() => <MTable
             headers={['ID', 'TYPE', 'TITLE', 'DATE', 'RATING', 'GIF', 'GIF', 'GIF','GIF','GIF', 'GIF']}
             headerStyle={{ minWidth: '200px',   
+            position: 'sticky',
+            top: 0,
             textAlign: 'center',
             background: 'green',
             fontWeight: 'bold' }}

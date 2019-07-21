@@ -26,6 +26,6 @@
   }
 
   .stickyHeader {
-      position: sticky;
+      z-index: 10000;
       left: 0;
   }

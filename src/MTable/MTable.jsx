@@ -63,16 +63,14 @@ class MTable extends React.Component {
         return (<div>
             <div><h1> GIFTed !</h1>
                 <input type="text" onChange={this.props.onChangee} /></div>
-            <table>
-                <thead>
-                    <tr>
-                        {this.props.headers.map(h => <th style={this.props.headerStyle}>{h}</th>)}
-                    </tr>
-                </thead>
-            </table>
+            
+                    
+          
             <div onScroll={this.setScrollState} id="scroll-container" className="MContainer">
                 <div id="item-container" className="Table" style={{ paddingTop: this.state.paddingTop, paddingBottom: this.state.paddingBottom }}>
-
+                <div style={{display:'flex',position:'sticky', top: '0px', zIndex:99}}>
+               
+                        {this.props.headers.map((h, i) => <div className={i === 0 ? "stickyHeader" : ''} style={this.props.headerStyle}>{h}</div>)}</div>
                     <div className="MRow">1</div>
                     <div className="MRow">2</div>
                     <div className="MRow">3</div>
@@ -89,7 +87,7 @@ class MTable extends React.Component {
 
             </div>
 
-        </div>);
+            </div>);
     }
 }
 export default MTable;

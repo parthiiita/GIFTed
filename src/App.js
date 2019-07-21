@@ -32,7 +32,21 @@ class App extends Component {
 
 
   rowJSX = (data) => {
-    return <div><a href={data.images.original.url}>{data.id}</a></div>
+    return <div style={{display: 'flex', background: 'mediumpurple'}}>
+      <a style={{ position:'sticky',left: 0, background:'orange', textAlign: 'center', height: '100px', minWidth: '200px' }} href={data.images.original.url}>{data.id}</a>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}>{data.type}</div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}>{data.title}</div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}>{data.import_datetime}</div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}>{data.rating}</div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}><img style={{width:'inherit', height:'inherit'}} src={data.images.original.url} /></div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}><img style={{width:'inherit', height:'inherit'}} src={data.images.original.url} /></div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}><img style={{width:'inherit', height:'inherit'}} src={data.images.original.url} /></div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}><img style={{width:'inherit', height:'inherit'}} src={data.images.original.url} /></div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}><img style={{width:'inherit', height:'inherit'}} src={data.images.original.url} /></div>
+      <div style={{ textAlign: 'center',height: '100px',minWidth: '200px' }}><img style={{width:'inherit', height:'inherit'}} src={data.images.original.url} /></div>
+
+
+      </div>
   }
 
 
@@ -42,8 +56,11 @@ class App extends Component {
 
         <Router>
           <Route exact path="/" render={() => <MTable
-            headers={['ID', 'TYPE', 'TITLE', 'DATE', 'RATING', 'GIF']}
-            headerStyle={{ width: '200px' }}
+            headers={['ID', 'TYPE', 'TITLE', 'DATE', 'RATING', 'GIF', 'GIF', 'GIF','GIF','GIF', 'GIF']}
+            headerStyle={{ minWidth: '200px',   
+            textAlign: 'center',
+            background: 'green',
+            fontWeight: 'bold' }}
             asyncStatus={this.state.fetchStatus}
             totalItems={this.state.gifs.length} data={this.state.gifs} fetchData={this.fetchGif} rowJSX={this.rowJSX} onChangee={this.onChangee} />} />
         </Router>

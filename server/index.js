@@ -8,7 +8,8 @@ const proxyServer = httpProxy.createProxyServer({
   });
   //app.use(express.static(__dirname + 'dist'));  const router = express.Router();
   function logProxyError(error) {
-    logger.error('Error occured in giphy', { error });
+    //logger.error('Error occured in giphy', { error });
+    console.log('Error occured in giphy', { error })
   }
   app.get('/api', (req, res) => res.send('hello world'));
   app.get('/api/*', (req, res) => {

@@ -15,7 +15,8 @@ let lastFirstItem = 1;
 class MTable extends React.Component {
     state ={
         paddingTop: 0,
-        paddingBottom: 0
+        paddingBottom: 0,
+        asyncStatus: 'init'
     }
 
     componentDidMount() {
@@ -26,18 +27,27 @@ class MTable extends React.Component {
         //     this.setScrollState(scrollContainer.scrollTop());
         // });
         
-        //this.setScrollState(0);
+        //this.setScrollState({target:{scrollTop:0}});
+        //console.log(this.props.data)
+    }
+    componentWillReceiveProps(nextProps) {
+        //console.log('called', this.props.data,nextProps.data)
+        
+        if(!this.props.data.length && nextProps.data.length) {
+           // console.log('in')
+            this.setScrollState({target:{scrollTop:0}}, nextProps);
+        }
     }
 
-     setScrollState = (scrollTop) => {
-         const totalItems = this.props.totalItems;
-         console.log({totalItems});
-         console.log(scrollTop.target.scrollTop, scrollContainer.scrollTop)
+     setScrollState = (scrollTop, props = this.props) => {
+         const totalItems = props.totalItems;
+        //  console.log({totalItems});
+        //  console.log(scrollTop.target.scrollTop, scrollContainer.scrollTop)
         //const itemContainer = document.getElementById('item-container');
         
         const itemsBefore = Math.min(Math.floor(scrollTop.target.scrollTop / itemHeight), totalItems - itemsRendered);
       const itemsAfter = totalItems - (itemsBefore + itemsRendered);
-      console.log({itemsBefore, itemsAfter});
+      //console.log({itemsBefore, itemsAfter});
       //const items = $('.MRow')
       items = $('.MRow');
       const firstItem = itemsBefore + 1;
@@ -45,8 +55,8 @@ class MTable extends React.Component {
     console.log(items);
     let start = itemsBefore + 1;
     for (var i = 0 ; i < 10 ; i++) {
-        console.log( i);
-        ReactDOM.render( this.props.rowJSX(start + i), items[i]);
+        //console.log( i);
+        ReactDOM.render( props.rowJSX(props.data[start + i -1]), items[i]);
         //items.eq(0).append(<div>{i+1}</div>)
     }
     //     if (firstItem > lastFirstItem) {
@@ -61,17 +71,33 @@ class MTable extends React.Component {
       
       const paddingTop = itemsBefore * itemHeight;
       const paddingBottom = itemsAfter * itemHeight;
-      console.log({paddingTop, paddingBottom});
-      this.setState({paddingTop, paddingBottom}, () => !this.state.paddingBottom && this.props.fetchData());
+      //console.log({paddingTop, paddingBottom});
+      this.setState({paddingTop, paddingBottom},  () => {
+          if (!this.state.paddingBottom) {
+             this.setState({asyncStatus: 'loading'})
+             props.fetchData().then(()=> this.setState({asyncStatus: 'success'}));
+           
+            
+          } 
+        });
       //itemContainer.css({ paddingTop, paddingBottom });
       //this.forceUpdate()
 ;    }
     render() {
+        console.log('render',this.state.asyncStatus, this.props.data)
         return (<div>
             <div><h1> GIFTed !</h1>
         <input type="text" onChange={this.props.onChangee}/></div>
+        <table>
+            <thead>
+                <tr>
+                    {this.props.headers.map(h => <th style={this.props.headerStyle}>{h}</th>)}
+                    </tr>
+            </thead>
+        </table>
             <div onScroll={this.setScrollState} id="scroll-container" className="MContainer">
         <div id="item-container" className="Table" style={{paddingTop: this.state.paddingTop, paddingBottom: this.state.paddingBottom}}>
+            
             <div className="MRow">1</div>
             <div className="MRow">2</div>
             <div className="MRow">3</div>
@@ -82,8 +108,12 @@ class MTable extends React.Component {
             <div className="MRow">8</div>
             <div className="MRow">9</div>
             <div className="MRow">10</div>
+            {this.props.asyncStatus === 'loading' && <div className="loader"></div>}
+
         </div>
+
         </div>
+      
         </div>);
     }
 }

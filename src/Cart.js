@@ -8,8 +8,18 @@ class Cart extends React.Component {
             items : [
                 {name: 'Milk', quantity: 0, unitPrice: 10}, 
                 {name: 'sugar', quantity: 0, unitPrice: 20}, 
-                {name: 'tea', quantity:0, unitPrice: 30}]
+                {name: 'tea', quantity:0, unitPrice: 30},
+                {name: 'lemon', quantity: 0, unitPrice: 15}, 
+                {name: 'salt', quantity: 0, unitPrice: 25}, 
+                {name: 'ginger', quantity:0, unitPrice: 35},
+            ]
         }
+    }
+
+    componentDidMount() {
+        var items = JSON.parse(localStorage.getItem("items"));
+        this.setState({items});
+        //console.log(JSON.parse(items));
     }
     
     setQ = (index, increase) => {
@@ -22,7 +32,7 @@ class Cart extends React.Component {
             
         }
 
-        this.setState({items: oldItems});
+        this.setState({items: oldItems}, () => localStorage.setItem("items", JSON.stringify(this.state.items) ));
     }
     render() {
         return (<div style = {{display: 'flex'}}>

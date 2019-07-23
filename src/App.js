@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchGif();
+    //this.fetchGif();
   }
 
 

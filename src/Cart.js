@@ -42,8 +42,8 @@ class Cart extends React.Component {
     }
     render() {
         return (
-            <div style={{height:'700px'}}>
-                <div className="header">STICKY HEADER</div>
+            <div className="cartWrapper" style={{height:'700px'}}>
+                <div className="header" style={{textAlign: 'center'}}>STICKY HEADER</div>
         <div className="wrapper" style = {{display: 'flex'}}>
         <div style={{width: '60%', overflow:'scroll'}}>
     {this.state.items.map((item, i) => <CartItem setQ={this.setQ} item={item} index={i}/>)}</div>

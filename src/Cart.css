@@ -2,9 +2,15 @@
     position: sticky;
     top: 0;
     background: cyan;
-    height: 100px
+    height: 100px;
+    line-height: 100px;
 }
 
 .wrapper {
     height: 80%;
+}
+
+.cartWrapper {
+    padding: 20px;
+    background: gray;
 }

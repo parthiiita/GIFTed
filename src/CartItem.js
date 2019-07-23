@@ -5,14 +5,14 @@ class CartItem extends React.Component {
     
     
     render() {
-        return (<div className="itemRow">
-            <div style={{display: 'flex'}}>
-            <div>{`${this.props.index + 1}. `}</div>
-            <div>{this.props.item.name}</div>
+        return (<div style={this.props.item.quantity ? {background: 'lightgreen'} : { background: 'white'}}className="itemRow">
+            <div className="rowItemW" style={{display: 'flex'}}>
+            <div className="rowItem">{`${this.props.index + 1}. `}</div>
+            <div className="rowItem">{this.props.item.name}</div>
             </div>
-            <div style= {{display:'flex'}}> Quantity <div onClick={() => this.props.setQ(this.props.index, true)}>+</div>
-<div>{this.props.item.quantity}</div>
- <div onClick={() => this.props.setQ(this.props.index, false)}>-</div>
+            <div className="rowItemW" style= {{display:'flex'}}> <div className="rowItem">Quantity</div> <div style={{cursor: 'pointer'}} className="rowItem" onClick={() => this.props.setQ(this.props.index, true)}>+</div>
+<div className="rowItem">{this.props.item.quantity}</div>
+ <div className="rowItem" style={{cursor: 'pointer'}} onClick={() => this.props.setQ(this.props.index, false)}>-</div>
 </div>
 
         </div>);

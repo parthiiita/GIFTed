@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
 import CartBill from './CartBill';
+import './Cart.css';
 class Cart extends React.Component {
     constructor(props) {
         super(props);
@@ -34,11 +35,20 @@ class Cart extends React.Component {
 
         this.setState({items: oldItems}, () => localStorage.setItem("items", JSON.stringify(this.state.items) ));
     }
+
+
+    checkout = () => {
+        this.setState({items:[]});
+    }
     render() {
-        return (<div style = {{display: 'flex'}}>
+        return (
+            <div>
+                <div className="header">STICKY HEADER</div>
+        <div className="wrapper" style = {{display: 'flex'}}>
         <div style={{width: '60%'}}>
     {this.state.items.map((item, i) => <CartItem setQ={this.setQ} item={item} index={i}/>)}</div>
-            <div style={{width: '40%'}}><CartBill items={this.state.items}/></div>
+            <div style={{width: '40%'}}><CartBill checkout={this.checkout} items={this.state.items}/></div>
+        </div>
         </div>);
 
     }

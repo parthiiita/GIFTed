@@ -1,11 +1,11 @@
 import React from 'react';
-
+import './Cartitem.css';
 class CartItem extends React.Component {
 
     
     
     render() {
-        return (<div>
+        return (<div className="itemRow">
             <div style={{display: 'flex'}}>
             <div>{`${this.props.index + 1}. `}</div>
             <div>{this.props.item.name}</div>

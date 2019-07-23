@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MTable from './MTable';
+import Cart from './Cart';
 class App extends Component {
 
   state = {
@@ -58,16 +59,8 @@ class App extends Component {
       <div className="App">
 
         <Router>
-          <Route exact path="/" render={() => <MTable
-            headers={['ID', 'TYPE', 'TITLE', 'DATE', 'RATING', 'GIF', 'GIF', 'GIF','GIF','GIF', 'GIF']}
-            headerStyle={{ minWidth: '200px',   
-            position: 'sticky',
-            top: 0,
-            textAlign: 'center',
-            background: 'green',
-            fontWeight: 'bold' }}
-            asyncStatus={this.state.fetchStatus}
-            totalItems={this.state.gifs.length} data={this.state.gifs} fetchData={this.fetchGif} rowJSX={this.rowJSX} onChangee={this.onChangee} />} />
+          <Route exact path="/" render={() => <Cart
+            />} />
         </Router>
       </div>
     );

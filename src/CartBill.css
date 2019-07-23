@@ -1,3 +1,11 @@
 .itemRow {
     height: 200px;
 }
+
+.rowItem {
+    padding: 20px;
+}
+
+.rowItemW {
+    padding: 20px;
+}

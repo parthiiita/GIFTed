@@ -14,3 +14,8 @@
     padding: 20px;
     background: gray;
 }
+.headings {
+    background: 'yellow';
+    position: sticky;
+    top:0;
+}

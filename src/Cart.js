@@ -38,7 +38,11 @@ class Cart extends React.Component {
 
 
     checkout = () => {
-        this.setState({items:[]});
+        const oldItems = this.state.items;
+        for (let i = 0; i < oldItems.length; i++) {
+            oldItems[i].quantity = 0;
+        }
+        this.setState({items:oldItems}, localStorage.setItem("items", JSON.stringify(this.state.items) ));
     }
     render() {
         return (

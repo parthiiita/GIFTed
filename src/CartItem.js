@@ -9,7 +9,7 @@ class CartItem extends React.Component {
             <div className="rowItemW" style={{display: 'flex'}}>
             <div className="rowItem">{`${this.props.index + 1}. `}</div>
             <div className="rowItem">{this.props.item.name}</div>
-            <div className="rowItem">{'Unit Price' + this.props.item.unitPrice}</div>
+            <div className="rowItem">{'Unit Price ' + this.props.item.unitPrice}</div>
 
             </div>
             <div className="rowItemW" style= {{display:'flex'}}> <div className="rowItem">Quantity</div> <div style={{cursor: 'pointer'}} className="rowItem" onClick={() => this.props.setQ(this.props.index, true)}>+</div>

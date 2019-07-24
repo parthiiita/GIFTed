@@ -19,6 +19,7 @@ class Cart extends React.Component {
 
     componentDidMount() {
         var items = JSON.parse(localStorage.getItem("items"));
+        if (items)
         this.setState({ items });
         //console.log(JSON.parse(items));
     }
